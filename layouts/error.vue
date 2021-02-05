@@ -29,9 +29,6 @@
 </template>
 
 <style lang="scss" scoped>
-// FIXME: enable stylelint, fix errors
-/* stylelint-disable */
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
 
 @mixin flex {
@@ -172,7 +169,7 @@ $err-message-color: #d2ccc6;
     position: relative;
     border-radius: 3px;
 
-    &:after {
+    &::after {
       @include size(20px);
 
       content: '';

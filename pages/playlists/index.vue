@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+  <v-container>
     <nav-bar />
   </v-container>
 </template>

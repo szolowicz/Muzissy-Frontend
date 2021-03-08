@@ -46,11 +46,17 @@ import IPlaylist from '../../interfaces/playlist';
 
 export default Vue.extend({
   async asyncData({ $axios }: any) {
-    const playlists = await $axios
-      .$get('http://localhost:8080/playlists')
-      .then(({ playlists }: { playlists: IPlaylist[] }) => {
-        return playlists;
-      });
+    let playlists;
+    try {
+      playlists = await $axios
+        .$get('http://localhost:8080/playlists')
+        .then(({ playlists }: { playlists: IPlaylist[] }) => {
+          return playlists;
+        });
+    } catch (error) {
+      console.error(error);
+      playlists = '';
+    }
     return { playlists };
   },
   data() {

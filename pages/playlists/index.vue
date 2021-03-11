@@ -18,7 +18,7 @@
         <v-card-actions>
           <v-btn
             class="amber darken-3--text text--accent-4"
-            @click="quiz(playlist._id)"
+            :to="`/playlists/quiz/${playlist._id}`"
             >quiz</v-btn
           >
           <v-spacer></v-spacer>
@@ -68,11 +68,6 @@ export default Vue.extend({
     return {
       showSongs: false,
     };
-  },
-  methods: {
-    quiz(id: string) {
-      this.$router.push({ path: `/playlists/quiz/${id}` });
-    },
   },
 });
 </script>

@@ -1,8 +1,6 @@
 <template>
   <div>
-    <header>
-      <h1>{{ res.name }}</h1>
-    </header>
+    <quiz-question />
   </div>
 </template>
 

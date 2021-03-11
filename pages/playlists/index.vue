@@ -16,6 +16,11 @@
           {{ playlist.difficulty }}
         </v-card-subtitle>
         <v-card-actions>
+          <v-btn
+            class="amber darken-3--text text--accent-4"
+            :to="`/playlists/quiz/${playlist._id}`"
+            >quiz</v-btn
+          >
           <v-spacer></v-spacer>
           <v-btn icon @click="showSongs = !showSongs">
             <v-icon>{{

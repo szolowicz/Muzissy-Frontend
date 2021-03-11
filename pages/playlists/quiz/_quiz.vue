@@ -1,6 +1,6 @@
 <template>
   <div>
-    <quiz-question />
+    <quiz-question :name="res.name" :songs="res.songs" />
   </div>
 </template>
 

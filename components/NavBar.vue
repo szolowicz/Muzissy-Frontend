@@ -2,7 +2,7 @@
   <div>
     <v-navigation-drawer v-model="drawer" app absolute bottom temporary>
       <v-list nav dense>
-        <v-list-item-group v-model="group" active-class="secondary">
+        <v-list-item-group active-class="secondary">
           <v-list-item v-for="({ title }, i) in linksUser" :key="i">
             <v-list-item-title>{{ title }}</v-list-item-title>
           </v-list-item>
@@ -23,17 +23,22 @@
       <v-tabs v-for="({ title, link }, i) in links" :key="i" align-with-title>
         <v-tab :to="link">{{ title }}</v-tab>
       </v-tabs>
-      <v-tooltip v-if="name != ''" bottom>
-        <template #activator="{ on }">
-          <v-btn icon v-on="on">
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
-        </template>
-        <span>Search for {{ name }}</span>
-      </v-tooltip>
+      <v-text-field
+        v-if="name != '' && (!searchClosed || search)"
+        v-model="search"
+        :placeholder="`Search for ${name}`"
+        prepend-inner-icon="mdi-magnify"
+        class="expanding-search mt-5 mr-2"
+        dense
+        @blur="searchClosed = true"
+        @focus="searchCLosed = false"
+      ></v-text-field>
+      <v-btn v-else icon @click="searchClosed = false">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
       <v-tooltip bottom>
         <template #activator="{ on }">
-          <v-btn icon @click="changeTheme" v-on="on">
+          <v-btn icon v-on="on">
             <v-icon>mdi-brightness-6</v-icon>
           </v-btn>
         </template>
@@ -56,8 +61,9 @@ export default Vue.extend({
   },
   data() {
     return {
+      searchClosed: true,
+      search: undefined,
       drawer: false,
-      group: 0,
       links: [
         {
           title: 'Playlists',
@@ -72,5 +78,20 @@ export default Vue.extend({
       ],
     };
   },
+  // methods: {
+  //   search() {
+  //     this.searchClosed = ;
+  //     console.log(this.searchClosed);
+  //   },
+  // },
 });
 </script>
+
+<style lang="sass" scoped>
+.v-input.expanding-search
+  .v-input__slot
+    &::before, &::after
+      border-color: transparent !important
+  &.closed
+    max-width: 45px
+</style>

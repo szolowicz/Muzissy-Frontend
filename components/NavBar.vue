@@ -2,10 +2,7 @@
   <div>
     <v-navigation-drawer v-model="drawer" app absolute bottom temporary>
       <v-list nav dense>
-        <v-list-item-group
-          v-model="group"
-          active-class="amber darken-3--text text--accent-4"
-        >
+        <v-list-item-group v-model="group" active-class="secondary">
           <v-list-item v-for="({ title }, i) in links" :key="i">
             <v-list-item-title>{{ title }}</v-list-item-title>
           </v-list-item>

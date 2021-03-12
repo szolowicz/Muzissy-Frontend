@@ -18,15 +18,17 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"
         ><v-icon>mdi-account</v-icon></v-app-bar-nav-icon
       >
-      <v-toolbar-title style="width: 130px">Muzissy</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-tabs v-for="({ title, link }, i) in links" :key="i" align-with-title>
-        <v-tab :to="link">{{ title }}</v-tab>
+      <v-toolbar-title style="width: 200px">Muzissy</v-toolbar-title>
+      <v-tabs align-with-title>
+        <v-tab v-for="({ title, link }, i) in links" :key="i" :to="link">{{
+          title
+        }}</v-tab>
       </v-tabs>
       <v-text-field
         v-if="name != '' && (!searchClosed || search)"
         v-model="search"
         :placeholder="`Search for ${name}`"
+        style="width: 300px"
         prepend-inner-icon="mdi-magnify"
         class="expanding-search mt-5 mr-2"
         dense
@@ -58,6 +60,10 @@ export default Vue.extend({
       default: '',
       type: String,
     },
+    components: {
+      default: undefined,
+      type: Array,
+    },
   },
   data() {
     return {
@@ -69,6 +75,10 @@ export default Vue.extend({
           title: 'Playlists',
           link: '/playlists',
         },
+        {
+          title: 'Users',
+          link: '/users',
+        },
       ],
       linksUser: [
         {
@@ -78,20 +88,18 @@ export default Vue.extend({
       ],
     };
   },
-  // methods: {
-  //   search() {
-  //     this.searchClosed = ;
-  //     console.log(this.searchClosed);
-  //   },
-  // },
+  computed: {
+    filteredComponents(): any {
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      if (!this.search)
+        return this.$parent.$emit('filteredComponents', this.components);
+      return this.$emit(
+        'filteredComponents',
+        this.components.filter((component: any) => {
+          return component.name.match(this.search);
+        })
+      );
+    },
+  },
 });
 </script>
-
-<style lang="sass" scoped>
-.v-input.expanding-search
-  .v-input__slot
-    &::before, &::after
-      border-color: transparent !important
-  &.closed
-    max-width: 45px
-</style>

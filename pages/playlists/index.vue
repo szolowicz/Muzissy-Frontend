@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar />
+    <nav-bar name="Playlists" :components="playlists" />
     <div class="margin">
       <v-card
         v-for="(playlist, index) in playlists"
@@ -16,9 +16,7 @@
           {{ playlist.difficulty }}
         </v-card-subtitle>
         <v-card-actions>
-          <v-btn
-            class="amber darken-3--text text--accent-4"
-            :to="`/playlists/quiz/${playlist._id}`"
+          <v-btn class="secondary" :to="`/playlists/quiz/${playlist._id}`"
             >quiz</v-btn
           >
           <v-spacer></v-spacer>
@@ -67,6 +65,7 @@ export default Vue.extend({
   data() {
     return {
       showSongs: false,
+      filteredComponents: [],
     };
   },
 });

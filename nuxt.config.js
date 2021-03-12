@@ -3,7 +3,7 @@ import colors from 'vuetify/es5/util/colors';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Muzissy-Frontend',
+    titleTemplate: 'Muzissy',
     title: 'Muzissy-Frontend',
     meta: [
       { charset: 'utf-8' },
@@ -57,7 +57,7 @@ export default {
       dark: true,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.amber.darken3,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,

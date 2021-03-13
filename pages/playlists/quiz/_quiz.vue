@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types';
 import Vue from 'vue';
 export default Vue.extend({
-  async asyncData({ $axios, params }: any) {
+  async asyncData({ $axios, params }: Context) {
     let res;
     try {
       res = await $axios

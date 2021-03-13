@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar name="Users" :components="users" />
+    <nav-bar v-model="users" name="Users" />
     <div class="margin">
       <v-card
         v-for="(user, index) in users"
@@ -23,12 +23,13 @@
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types';
 import Vue from 'vue';
 
 import IUser from '../../interfaces/user';
 
 export default Vue.extend({
-  async asyncData({ $axios }: any) {
+  async asyncData({ $axios }: Context) {
     let users;
     try {
       users = await $axios

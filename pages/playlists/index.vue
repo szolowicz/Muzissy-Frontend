@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar name="Playlists" :components="playlists" />
+    <nav-bar v-model="playlists" name="Playlists" />
     <div class="margin">
       <v-card
         v-for="(playlist, index) in playlists"
@@ -43,12 +43,13 @@
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types';
 import Vue from 'vue';
 
 import IPlaylist from '../../interfaces/playlist';
 
 export default Vue.extend({
-  async asyncData({ $axios }: any) {
+  async asyncData({ $axios }: Context) {
     let playlists;
     try {
       playlists = await $axios
@@ -65,7 +66,6 @@ export default Vue.extend({
   data() {
     return {
       showSongs: false,
-      filteredComponents: [],
     };
   },
 });

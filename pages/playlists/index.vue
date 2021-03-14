@@ -31,7 +31,7 @@
             <v-divider></v-divider>
 
             <div v-for="(song, i) in playlist.songs" :key="i">
-              <img :src="song.img" />
+              <img :src="song.img" :alt="song.name" />
               <v-card-title>song.name</v-card-title>
               <v-card-subtitle>song.band</v-card-subtitle>
             </div>

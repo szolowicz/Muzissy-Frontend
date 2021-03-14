@@ -25,7 +25,7 @@
         }}</v-tab>
       </v-tabs>
       <v-text-field
-        v-if="name != '' && (!searchClosed || search)"
+        v-if="name !== '' && (!searchClosed || search)"
         v-model="search"
         :placeholder="`Search for ${name}`"
         style="width: 300px"
